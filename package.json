@@ -54,7 +54,18 @@
           "when": "true"
         }
       ]
+    },
+        "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeforgex",
+          "title": "CodeForgeX",
+          "icon": "$(robot)"
+        }
+      ]
     }
+
+
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
