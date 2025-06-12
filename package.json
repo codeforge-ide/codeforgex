@@ -13,11 +13,48 @@
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
+ 
       {
-        "command": "codeforgex.helloWorld",
-        "title": "Hello World"
+        "command": "codeforgex.openChat",
+        "title": "Open CodeForgeX Chat",
+        "category": "CodeForgeX",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "codeforgex.addFile",
+        "title": "Add File to Context",
+        "category": "CodeForgeX",
+        "icon": "$(add)"
+      },
+      {
+        "command": "codeforgex.clearContext",
+        "title": "Clear Context",
+        "category": "CodeForgeX",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "codeforgex.switchMode",
+        "title": "Switch Mode",
+        "category": "CodeForgeX",
+        "icon": "$(gear)"
       }
-    ]
+
+    ],
+      "views": {
+      "codeforgex": [
+        {
+          "id": "codeforgex.chatView",
+          "name": "Chat",
+          "when": "true",
+          "type": "webview"
+        },
+        {
+          "id": "codeforgex.contextView",
+          "name": "Context Files",
+          "when": "true"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
@@ -34,16 +71,19 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.101.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
+    "@types/vscode": "^1.101.0",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
-    "eslint": "^9.25.1",
-    "esbuild": "^0.25.3",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.8.3",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@vscode/codicons": "^0.0.36"
   }
 }
