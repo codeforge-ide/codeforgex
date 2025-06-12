@@ -63,6 +63,22 @@
           "icon": "$(robot)"
         }
       ]
+    },
+        "menus": {
+      "explorer/context": [
+        {
+          "command": "codeforgex.addFile",
+          "when": "resourceExtname != ''",
+          "group": "codeforgex"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "codeforgex.clearContext",
+          "when": "view == codeforgex.contextView",
+          "group": "navigation"
+        }
+      ]
     }
 
 
