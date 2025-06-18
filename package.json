@@ -4,7 +4,6 @@
   "publisher": "nathfavour",
   "description": "AI powered web3 developer tooling ecosystem",
   "version": "0.0.1",
-  "publisher": "nathfavour",
   "repository": "https://github.com/codeforge-ide/codeforgex.git",
   "engines": {
     "vscode": "^1.101.0"
