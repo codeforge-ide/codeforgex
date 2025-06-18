@@ -1,71 +1,65 @@
-# codeforgex README
+# codeforgex
 
-This is the README for your extension "codeforgex". After writing up a brief description, we recommend including the following sections.
+**codeforgex** is a Visual Studio Code extension that brings advanced regular expression (regex) tools and utilities directly into your editor. Effortlessly test, debug, and visualize regex patterns as you code.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Regex Tester:** Instantly test and debug regular expressions within VS Code.
+- **Live Match Highlighting:** See matches and groups highlighted in your open files.
+- **Regex Explanation:** Get human-readable explanations for your regex patterns.
+- **Quick Insert:** Easily insert common regex snippets and templates.
+- **History & Favorites:** Save and manage your frequently used regex patterns.
+- **Export/Import:** Copy regex patterns with flags or export them for use in other tools.
 
-For example if there is an image subfolder under your extension project workspace:
+![Regex Tester Screenshot](images/regex-tester.png)
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+> Tip: Use the command palette (`Ctrl+Shift+P`) and search for "codeforgex" to access all features.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+No additional dependencies are required. The extension works out-of-the-box with Visual Studio Code 1.60.0 or later.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+- `codeforgex.enable`: Enable or disable codeforgex features.
+- `codeforgex.theme`: Choose a theme for regex highlighting.
+- `codeforgex.saveHistory`: Enable/disable saving regex history.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Large files may impact performance when live highlighting is enabled.
+- Some advanced regex features may not be supported in all languages.
+
+Please report issues or feature requests on the [GitHub Issues page](https://github.com/yourusername/codeforgex/issues).
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 1.1.0
 
-### 1.0.0
-
-Initial release of ...
+- Added regex explanation and quick insert features.
+- Improved performance for large files.
 
 ### 1.0.1
 
-Fixed issue #.
+- Fixed minor UI bugs.
 
-### 1.1.0
+### 1.0.0
 
-Added features X, Y, and Z.
+- Initial release with regex tester and live highlighting.
 
 ---
 
-## Following extension guidelines
+## Contributing
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+Contributions are welcome! Please read the [contributing guidelines](CONTRIBUTING.md) before submitting a pull request.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+## Resources
 
-## Working with Markdown
+- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+- [VS Code API Reference](https://code.visualstudio.com/api)
+- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+**Enjoy using codeforgex!**
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

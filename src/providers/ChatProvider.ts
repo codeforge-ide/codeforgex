@@ -52,7 +52,9 @@ export class ChatProvider implements vscode.WebviewViewProvider {
     }
 
     private async _handleUserMessage(message: string) {
-        if (!message.trim()) return;
+        if (!message.trim()) {
+            return;
+        }
 
         // Add user message
         const userMessage: ChatMessage = {
@@ -143,9 +145,6 @@ export class ChatProvider implements vscode.WebviewViewProvider {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>CodeForgeX Chat</title>
             <style>
-                /* Use VSCode's built-in codicon font */
-                @import url('https://unpkg.com/@vscode/codicons@0.0.35/dist/codicon.css');
-
                 * {
                     margin: 0;
                     padding: 0;
@@ -250,6 +249,15 @@ export class ChatProvider implements vscode.WebviewViewProvider {
 
                 .control-btn.primary:hover {
                     background: var(--vscode-button-hoverBackground);
+                }
+
+                .icon {
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 16px;
                 }
 
                 .messages-container {
@@ -524,13 +532,25 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     background: #FF9800;
                     animation: pulse 1s infinite;
                 }
+
+                .spinner {
+                    display: inline-block;
+                    width: 16px;
+                    height: 16px;
+                    border: 2px solid currentColor;
+                    border-radius: 50%;
+                    border-top-color: transparent;
+                    animation: spin 1s linear infinite;
+                }
+
+                @keyframes spin {
+                    to { transform: rotate(360deg); }
+                }
             </style>
         </head>
         <body>
             <div class="header">
-                <div class="header-icon">
-                    <i class="codicon codicon-robot"></i>
-                </div>
+                <div class="header-icon">🤖</div>
                 <div class="header-title">CodeForgeX AI</div>
                 <div class="mode-indicator" id="modeIndicator">
                     <span class="status-indicator status-online"></span>
@@ -540,11 +560,11 @@ export class ChatProvider implements vscode.WebviewViewProvider {
 
             <div class="controls">
                 <button class="control-btn primary" onclick="switchMode()" title="Switch AI Mode">
-                    <i class="codicon codicon-gear"></i>
+                    <span class="icon">⚙️</span>
                     Switch Mode
                 </button>
                 <button class="control-btn" onclick="clearChat()" title="Clear Chat History">
-                    <i class="codicon codicon-trash"></i>
+                    <span class="icon">🗑️</span>
                     Clear
                 </button>
             </div>
@@ -577,7 +597,7 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                              oninput="autoResize(this)"></textarea>
                 </div>
                 <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="Send Message">
-                    <i class="codicon codicon-send"></i>
+                    ▶
                 </button>
             </div>
             
@@ -633,9 +653,7 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 function updateSendButton(enabled) {
                     const btn = document.getElementById('sendBtn');
                     btn.disabled = !enabled;
-                    btn.innerHTML = enabled ? 
-                        '<i class="codicon codicon-send"></i>' : 
-                        '<i class="codicon codicon-loading codicon-modifier-spin"></i>';
+                    btn.innerHTML = enabled ? '▶' : '<div class="spinner"></div>';
                 }
                 
                 function showTypingIndicator(show) {
@@ -652,10 +670,10 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 
                 function getModeIcon(mode) {
                     switch(mode) {
-                        case 'edit': return 'codicon-edit';
-                        case 'agent': return 'codicon-robot';
+                        case 'edit': return '✏️';
+                        case 'agent': return '🤖';
                         case 'ask': 
-                        default: return 'codicon-comment-discussion';
+                        default: return '💬';
                     }
                 }
                 
@@ -688,12 +706,12 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     
                     container.innerHTML = messages.map(msg => {
                         const timestamp = new Date(msg.timestamp);
-                        const modeIcon = msg.mode ? getModeIcon(msg.mode) : 'codicon-comment';
+                        const modeIcon = msg.mode ? getModeIcon(msg.mode) : '💬';
                         
                         return \`
                             <div class="message \${msg.type}">
                                 <div class="message-header">
-                                    <i class="codicon \${modeIcon}"></i>
+                                    <span class="icon">\${modeIcon}</span>
                                     <span>\${msg.type.charAt(0).toUpperCase() + msg.type.slice(1)}</span>
                                     <span style="margin-left: auto; font-size: 10px;">\${formatTimestamp(timestamp)}</span>
                                 </div>
