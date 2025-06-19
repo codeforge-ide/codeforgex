@@ -562,11 +562,11 @@ export class ChatProvider implements vscode.WebviewViewProvider {
             </div>
 
             <div class="controls">
-                <button class="control-btn primary" onclick="switchMode()" title="Switch AI Mode">
+                <button class="control-btn primary" id="switchModeBtn" title="Switch AI Mode">
                     <span class="icon">⚙️</span>
                     Switch Mode
                 </button>
-                <button class="control-btn" onclick="clearChat()" title="Clear Chat History">
+                <button class="control-btn" id="clearChatBtn" title="Clear Chat History">
                     <span class="icon">🗑️</span>
                     Clear
                 </button>
@@ -595,10 +595,9 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 <div class="input-wrapper">
                     <textarea id="messageInput" class="message-input" 
                              placeholder="Ask me anything about your code..." 
-                             rows="1"
-                             oninput="autoResize(this)"></textarea>
+                             rows="1"></textarea>
                 </div>
-                <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="Send Message">
+                <button class="send-btn" id="sendBtn" title="Send Message">
                     ▶
                 </button>
             </div>
@@ -756,23 +755,30 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 function initializeEventListeners() {
                     const input = document.getElementById('messageInput');
                     const sendBtn = document.getElementById('sendBtn');
+                    const switchModeBtn = document.getElementById('switchModeBtn');
+                    const clearChatBtn = document.getElementById('clearChatBtn');
                     
                     if (input) {
                         input.addEventListener('keydown', handleKeyDown);
+                        input.addEventListener('input', function() { autoResize(this); });
                         input.focus();
                     }
                     
                     if (sendBtn) {
                         sendBtn.addEventListener('click', sendMessage);
                     }
+                    
+                    if (switchModeBtn) {
+                        switchModeBtn.addEventListener('click', switchMode);
+                    }
+                    
+                    if (clearChatBtn) {
+                        clearChatBtn.addEventListener('click', clearChat);
+                    }
                 }
                 
-                // Ensure event listeners are attached
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', initializeEventListeners);
-                } else {
-                    initializeEventListeners();
-                }
+                // Ensure event listeners are attached immediately
+                setTimeout(initializeEventListeners, 0);
             </script>
         </body>
         </html>`;
