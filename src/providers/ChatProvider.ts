@@ -711,6 +711,15 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                         const timestamp = new Date(msg.timestamp);
                         const modeIcon = msg.mode ? getModeIcon(msg.mode) : '💬';
                         
+                        // Properly escape HTML and handle line breaks
+                        const escapedContent = msg.content
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/"/g, '&quot;')
+                            .replace(/'/g, '&#39;')
+                            .replace(/\n/g, '<br>');
+                        
                         return \`
                             <div class="message \${msg.type}">
                                 <div class="message-header">
@@ -719,7 +728,7 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                                     <span style="margin-left: auto; font-size: 10px;">\${formatTimestamp(timestamp)}</span>
                                 </div>
                                 <div class="message-bubble">
-                                    <div class="message-content">\${msg.content.replace(/\\n/g, '<br>')}</div>
+                                    <div class="message-content">\${escapedContent}</div>
                                 </div>
                             </div>
                         \`;
