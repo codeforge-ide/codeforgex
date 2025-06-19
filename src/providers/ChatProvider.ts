@@ -153,8 +153,8 @@ export class ChatProvider implements vscode.WebviewViewProvider {
 
                 body { 
                     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-                    background: linear-gradient(135deg, var(--vscode-editor-background) 0%, var(--vscode-sideBar-background) 100%);
-                    color: var(--vscode-editor-foreground);
+                    background: var(--vscode-editor-background, #1e1e1e);
+                    color: var(--vscode-editor-foreground, #cccccc);
                     height: 100vh;
                     display: flex;
                     flex-direction: column;
@@ -162,13 +162,13 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 }
 
                 .header {
-                    background: var(--vscode-titleBar-activeBackground);
-                    border-bottom: 1px solid var(--vscode-panel-border);
+                    background: var(--vscode-titleBar-activeBackground, #2d2d30);
+                    border-bottom: 1px solid var(--vscode-panel-border, #464647);
                     padding: 16px;
                     display: flex;
                     align-items: center;
                     gap: 12px;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
                 }
 
                 .header-icon {
@@ -192,12 +192,12 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 .header-title {
                     font-size: 16px;
                     font-weight: 600;
-                    color: var(--vscode-titleBar-activeForeground);
+                    color: var(--vscode-titleBar-activeForeground, #cccccc);
                 }
 
                 .mode-indicator {
-                    background: linear-gradient(45deg, var(--vscode-badge-background), var(--vscode-button-background));
-                    color: var(--vscode-badge-foreground);
+                    background: var(--vscode-badge-background, #0e639c);
+                    color: var(--vscode-badge-foreground, #ffffff);
                     padding: 6px 12px;
                     border-radius: 20px;
                     font-size: 12px;
@@ -205,27 +205,27 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     text-transform: uppercase;
                     letter-spacing: 0.5px;
                     margin-left: auto;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
                     transition: all 0.3s ease;
                 }
 
                 .mode-indicator:hover {
                     transform: translateY(-1px);
-                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
                 }
 
                 .controls {
                     display: flex;
                     gap: 8px;
                     padding: 12px 16px;
-                    background: var(--vscode-sideBar-background);
-                    border-bottom: 1px solid var(--vscode-panel-border);
+                    background: var(--vscode-sideBar-background, #252526);
+                    border-bottom: 1px solid var(--vscode-panel-border, #464647);
                 }
 
                 .control-btn {
                     padding: 8px 16px;
-                    background: var(--vscode-button-secondaryBackground);
-                    color: var(--vscode-button-secondaryForeground);
+                    background: var(--vscode-button-secondaryBackground, #3c3c3c);
+                    color: var(--vscode-button-secondaryForeground, #cccccc);
                     border: none;
                     border-radius: 6px;
                     cursor: pointer;
@@ -238,17 +238,17 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 }
 
                 .control-btn:hover {
-                    background: var(--vscode-button-secondaryHoverBackground);
+                    background: var(--vscode-button-secondaryHoverBackground, #464647);
                     transform: translateY(-1px);
                 }
 
                 .control-btn.primary {
-                    background: var(--vscode-button-background);
-                    color: var(--vscode-button-foreground);
+                    background: var(--vscode-button-background, #0e639c);
+                    color: var(--vscode-button-foreground, #ffffff);
                 }
 
                 .control-btn.primary:hover {
-                    background: var(--vscode-button-hoverBackground);
+                    background: var(--vscode-button-hoverBackground, #1177bb);
                 }
 
                 .icon {
@@ -265,6 +265,7 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     overflow-y: auto;
                     padding: 16px;
                     scroll-behavior: smooth;
+                    background: var(--vscode-editor-background, #1e1e1e);
                 }
 
                 .messages-container::-webkit-scrollbar {
@@ -276,12 +277,12 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 }
 
                 .messages-container::-webkit-scrollbar-thumb {
-                    background: var(--vscode-scrollbarSlider-background);
+                    background: var(--vscode-scrollbarSlider-background, #464647);
                     border-radius: 3px;
                 }
 
                 .messages-container::-webkit-scrollbar-thumb:hover {
-                    background: var(--vscode-scrollbarSlider-hoverBackground);
+                    background: var(--vscode-scrollbarSlider-hoverBackground, #5a5a5a);
                 }
 
                 .message {
@@ -320,56 +321,59 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     word-wrap: break-word;
                     line-height: 1.4;
                     position: relative;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
                 }
 
                 .user .message-bubble {
-                    background: linear-gradient(135deg, var(--vscode-button-background), var(--vscode-inputOption-activeBackground));
-                    color: var(--vscode-button-foreground);
+                    background: var(--vscode-button-background, #0e639c);
+                    color: var(--vscode-button-foreground, #ffffff);
                     border-bottom-right-radius: 6px;
                 }
 
                 .assistant .message-bubble {
-                    background: var(--vscode-editor-selectionBackground);
-                    color: var(--vscode-editor-foreground);
+                    background: var(--vscode-sideBar-background, #252526);
+                    color: var(--vscode-editor-foreground, #cccccc);
                     border-bottom-left-radius: 6px;
-                    border: 1px solid var(--vscode-panel-border);
+                    border: 1px solid var(--vscode-panel-border, #464647);
                 }
 
                 .system .message-bubble {
-                    background: var(--vscode-inputValidation-warningBackground);
-                    color: var(--vscode-inputValidation-warningForeground);
+                    background: var(--vscode-inputValidation-warningBackground, #4d4000);
+                    color: var(--vscode-inputValidation-warningForeground, #ffcc02);
                     border-radius: 12px;
                     font-style: italic;
                     text-align: center;
-                    border: 1px solid var(--vscode-inputValidation-warningBorder);
+                    border: 1px solid var(--vscode-inputValidation-warningBorder, #b89500);
                 }
 
                 .message-header {
                     font-size: 11px;
-                    opacity: 0.7;
+                    opacity: 0.8;
                     margin-bottom: 4px;
                     display: flex;
                     align-items: center;
                     gap: 6px;
+                    color: var(--vscode-descriptionForeground, #999999);
                 }
 
                 .message-content {
                     white-space: pre-wrap;
+                    color: inherit;
                 }
 
                 .message-content code {
-                    background: var(--vscode-textCodeBlock-background);
+                    background: var(--vscode-textCodeBlock-background, #0f1419);
+                    color: var(--vscode-editor-foreground, #cccccc);
                     padding: 2px 6px;
                     border-radius: 4px;
-                    font-family: var(--vscode-editor-font-family);
+                    font-family: var(--vscode-editor-font-family, 'Monaco', 'Menlo', 'Courier New', monospace);
                     font-size: 12px;
                 }
 
                 .input-container {
                     padding: 16px;
-                    background: var(--vscode-input-background);
-                    border-top: 1px solid var(--vscode-panel-border);
+                    background: var(--vscode-sideBar-background, #252526);
+                    border-top: 1px solid var(--vscode-panel-border, #464647);
                     display: flex;
                     gap: 12px;
                     align-items: flex-end;
@@ -385,9 +389,9 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     min-height: 40px;
                     max-height: 120px;
                     padding: 12px 16px;
-                    background: var(--vscode-input-background);
-                    color: var(--vscode-input-foreground);
-                    border: 2px solid var(--vscode-input-border);
+                    background: var(--vscode-input-background, #3c3c3c);
+                    color: var(--vscode-input-foreground, #cccccc);
+                    border: 2px solid var(--vscode-input-border, #464647);
                     border-radius: 20px;
                     font-family: inherit;
                     font-size: 14px;
@@ -397,20 +401,20 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 }
 
                 .message-input:focus {
-                    border-color: var(--vscode-focusBorder);
+                    border-color: var(--vscode-focusBorder, #007acc);
                     box-shadow: 0 0 0 3px rgba(0, 122, 204, 0.1);
                 }
 
                 .message-input::placeholder {
-                    color: var(--vscode-input-placeholderForeground);
-                    opacity: 0.7;
+                    color: var(--vscode-input-placeholderForeground, #a6a6a6);
+                    opacity: 0.8;
                 }
 
                 .send-btn {
                     width: 40px;
                     height: 40px;
-                    background: linear-gradient(45deg, var(--vscode-button-background), var(--vscode-inputOption-activeBackground));
-                    color: var(--vscode-button-foreground);
+                    background: var(--vscode-button-background, #0e639c);
+                    color: var(--vscode-button-foreground, #ffffff);
                     border: none;
                     border-radius: 50%;
                     cursor: pointer;
@@ -418,12 +422,14 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     align-items: center;
                     justify-content: center;
                     transition: all 0.2s ease;
-                    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                    font-size: 16px;
                 }
 
                 .send-btn:hover {
+                    background: var(--vscode-button-hoverBackground, #1177bb);
                     transform: translateY(-1px) scale(1.05);
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
                 }
 
                 .send-btn:active {
@@ -453,16 +459,16 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     gap: 4px;
                     align-items: center;
                     padding: 12px 16px;
-                    background: var(--vscode-editor-selectionBackground);
+                    background: var(--vscode-sideBar-background, #252526);
                     border-radius: 18px;
                     border-bottom-left-radius: 6px;
-                    border: 1px solid var(--vscode-panel-border);
+                    border: 1px solid var(--vscode-panel-border, #464647);
                 }
 
                 .typing-dot {
                     width: 8px;
                     height: 8px;
-                    background: var(--vscode-editor-foreground);
+                    background: var(--vscode-editor-foreground, #cccccc);
                     border-radius: 50%;
                     opacity: 0.4;
                     animation: typing 1.4s infinite ease-in-out;
@@ -496,22 +502,19 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                 .empty-state-icon {
                     font-size: 48px;
                     margin-bottom: 16px;
-                    background: linear-gradient(45deg, #007ACC, #4FC3F7);
-                    -webkit-background-clip: text;
-                    -webkit-text-fill-color: transparent;
-                    background-clip: text;
+                    color: var(--vscode-editor-foreground, #cccccc);
                 }
 
                 .empty-state-title {
                     font-size: 18px;
                     font-weight: 600;
                     margin-bottom: 8px;
-                    color: var(--vscode-editor-foreground);
+                    color: var(--vscode-editor-foreground, #cccccc);
                 }
 
                 .empty-state-subtitle {
                     font-size: 14px;
-                    color: var(--vscode-descriptionForeground);
+                    color: var(--vscode-descriptionForeground, #999999);
                     line-height: 1.5;
                 }
 
