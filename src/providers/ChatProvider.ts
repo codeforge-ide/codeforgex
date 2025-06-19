@@ -596,7 +596,6 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     <textarea id="messageInput" class="message-input" 
                              placeholder="Ask me anything about your code..." 
                              rows="1"
-                             onkeydown="handleKeyDown(event)"
                              oninput="autoResize(this)"></textarea>
                 </div>
                 <button class="send-btn" id="sendBtn" onclick="sendMessage()" title="Send Message">
@@ -753,8 +752,27 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     }, 200);
                 }
                 
-                // Focus input on load
-                document.getElementById('messageInput').focus();
+                // Initialize event listeners when DOM is ready
+                function initializeEventListeners() {
+                    const input = document.getElementById('messageInput');
+                    const sendBtn = document.getElementById('sendBtn');
+                    
+                    if (input) {
+                        input.addEventListener('keydown', handleKeyDown);
+                        input.focus();
+                    }
+                    
+                    if (sendBtn) {
+                        sendBtn.addEventListener('click', sendMessage);
+                    }
+                }
+                
+                // Ensure event listeners are attached
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initializeEventListeners);
+                } else {
+                    initializeEventListeners();
+                }
             </script>
         </body>
         </html>`;

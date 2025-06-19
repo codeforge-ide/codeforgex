@@ -29,7 +29,7 @@ export class ContextProvider implements vscode.TreeDataProvider<ContextFile> {
 
         // Visual indicator for active/inactive files
         if (element.isActive) {
-            item.iconPath = new vscode.ThemeIcon('check', new vscode.ThemeColor('charts.green'));
+            item.iconPath = new vscode.ThemeIcon('check');
         } else {
             item.iconPath = new vscode.ThemeIcon('circle-outline');
         }
