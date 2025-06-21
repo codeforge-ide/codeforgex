@@ -751,34 +751,37 @@ export class ChatProvider implements vscode.WebviewViewProvider {
                     }, 200);
                 }
                 
-                // Initialize event listeners when DOM is ready
-                function initializeEventListeners() {
+                // Initialize immediately - webviews load scripts synchronously
+                (function() {
                     const input = document.getElementById('messageInput');
                     const sendBtn = document.getElementById('sendBtn');
                     const switchModeBtn = document.getElementById('switchModeBtn');
                     const clearChatBtn = document.getElementById('clearChatBtn');
                     
+                    console.log('Initializing...', { input, sendBtn, switchModeBtn, clearChatBtn });
+                    
                     if (input) {
                         input.addEventListener('keydown', handleKeyDown);
                         input.addEventListener('input', function() { autoResize(this); });
                         input.focus();
+                        console.log('Input events attached');
                     }
                     
                     if (sendBtn) {
                         sendBtn.addEventListener('click', sendMessage);
+                        console.log('Send button event attached');
                     }
                     
                     if (switchModeBtn) {
                         switchModeBtn.addEventListener('click', switchMode);
+                        console.log('Switch mode button event attached');
                     }
                     
                     if (clearChatBtn) {
                         clearChatBtn.addEventListener('click', clearChat);
+                        console.log('Clear chat button event attached');
                     }
-                }
-                
-                // Ensure event listeners are attached immediately
-                setTimeout(initializeEventListeners, 0);
+                })();
             </script>
         </body>
         </html>`;
